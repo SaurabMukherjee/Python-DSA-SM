@@ -46,4 +46,85 @@ if __name__ == '__main__':
 
     fptr.close()
 
+#Q4 Given a square matrix, calculate the absolute difference between the sums of its diagonals.
+#For example, the square matrix arr  is shown below:
+#1 2 3
+#4 5 6
+#9 8 9 
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+# Complete the 'diagonalDifference' function below.
+# The function is expected to return an INTEGER.
+# The function accepts 2D_INTEGER_ARRAY arr as parameter.
+
+def diagonalDifference(arr):
+    n = len(arr)
+    primary = sum(arr[i][i] for i in range(n))
+    secondary = sum(arr[i][n - 1 - i] for i in range(n))
+    return abs(primary - secondary)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = []
+
+    for _ in range(n):
+        arr.append(list(map(int, input().rstrip().split())))
+
+    result = diagonalDifference(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+
+#Q5 Given a time in -hour AM/PM format, convert it to military (24-hour) time.
+
+#Note: - 12:00:00AM on a 12-hour clock is 00:00:00 on a 24-hour clock.
+#- 12:00:00PM on a 12-hour clock is 12:00:00 on a 24-hour clock.
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+
+# Complete the 'timeConversion' function below.
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+
+def timeConversion(s):
+    period = s[-2:]       
+    hour = int(s[:2])      
+    minutes_seconds = s[2:-2] 
+    
+    if period == "AM":
+        if hour == 12:
+            hour = 0
+    else:
+        if hour != 12:
+            hour += 12
+    return f"{hour:02}{minutes_seconds}"
+    
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
 
